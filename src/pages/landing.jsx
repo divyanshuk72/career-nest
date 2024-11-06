@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import companies from "../data/companies.json";
 import Autoplay from "embla-carousel-autoplay";
+import Banner from "/Banner.png";
 
 const LandingPage = () => {
   return (
@@ -48,6 +49,8 @@ const LandingPage = () => {
           ))}
         </CarouselContent>
       </Carousel>
+      {/* Banner  */}
+      <img src={Banner} alt="Banner" className="w-full" />
     </main>
   );
 };
