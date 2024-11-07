@@ -13,7 +13,6 @@ const JobListing = () => {
     fnJobs();
   }, []);
 
-  console.log(dataJobs);
   return <div>JobListing</div>;
 };
 
