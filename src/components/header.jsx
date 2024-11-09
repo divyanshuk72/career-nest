@@ -45,7 +45,7 @@ const Header = () => {
         <div className="flex gap-8">
           <SignedOut>
             <Button variant="outline" onClick={handleLogin}>
-              Login
+              Sign In
             </Button>
           </SignedOut>
           <SignedIn>
