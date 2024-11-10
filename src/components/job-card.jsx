@@ -52,7 +52,7 @@ const JobCard = ({
           </Button>
         </Link>
 
-        <Heart stroke="red" fill="red" />
+        <Heart stroke="red" />
       </CardFooter>
     </Card>
   );
