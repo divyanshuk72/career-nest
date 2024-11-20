@@ -37,9 +37,12 @@ const Header = () => {
 
   return (
     <>
-      <nav className="py-4 flex justify-between items-center">
-        <Link>
-          <img src={Logo} alt="logo" className="h-28" />
+      <nav
+        className="py-4 flex justify-between items-center"
+        aria-label="Main navigation"
+      >
+        <Link to="/" aria-label="Home">
+          <img src={Logo} alt="CareerNest Logo" className="h-28" />
         </Link>
 
         <div className="flex gap-8">

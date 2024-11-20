@@ -1,5 +1,5 @@
 import { useSession } from "@clerk/clerk-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useFetch = (cb, options = {}) => {
   const [data, setData] = useState();
@@ -8,19 +8,30 @@ const useFetch = (cb, options = {}) => {
 
   const { session } = useSession();
 
-  const fn = async (...args) => {
-    setLoading(true);
-    setError(null);
+  useEffect(() => {
+    const controller = new AbortController();
 
+    return () => controller.abort();
+  }, []);
+
+  const fn = async (...args) => {
     try {
-      const supabaseAccessToken = await session.getToken({
+      setLoading(true);
+      setError(null);
+
+      if (!session) {
+        throw new Error("No session available");
+      }
+
+      const token = await session.getToken({
         template: "supabase",
       });
-      const response = await cb(supabaseAccessToken, options, ...args);
+
+      const response = await cb(token, options, ...args);
       setData(response);
-      setError(null);
     } catch (err) {
-      setError(err);
+      setError(err.message);
+      throw err;
     } finally {
       setLoading(false);
     }

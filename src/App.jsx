@@ -10,6 +10,8 @@ import MyJobs from "./pages/my-jobs";
 import "./App.css";
 import { ThemeProvider } from "./components/theme-provider";
 import ProtectedRoute from "./components/protected-route";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 const router = createBrowserRouter([
   {
@@ -73,9 +75,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
